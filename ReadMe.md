@@ -1,6 +1,6 @@
-# Replace and write your Name and Lastname
+# Michal Darovec
 
-## Replace and write Project name
+## Real Estate Auction
 
 ## Table of Contents
 
