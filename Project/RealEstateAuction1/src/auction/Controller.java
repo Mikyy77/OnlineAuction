@@ -37,9 +37,8 @@ public class Controller implements Initializable {
     
     
     
-    
     public Controller() {
-    	filepath = "C:\\Users\\micha\\mySpaceShip\\RealEstateAuction\\src\\files\\users.txt"; // update users file location here
+    	filepath = ""; // update users file location here
     }
 
     @Override
