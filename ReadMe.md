@@ -12,7 +12,9 @@ I have decided to create a singleton class called AuctionProcess where all the d
 
 ## Info
 
-To run the program with the user list, you first have to specify the path to the file where users.txt is or you can create your own file anywhere. You just need to specify the path to get all functionalities, even though it doesn’t work completely right yet.
+During the auction process, the user biddings are only shown in console so far. So to see how players and bots bid, it is neccessary to check the console - for this version.
+
+To run the program with the user list, in the Controller class, you first have to specify the path to the file where users.txt is or you can create your own file anywhere. You just need to specify the path to get all functionalities, even though it doesn’t work completely right yet.
 In this version, many functionalities aren’t perfect. Login is not done at all, most likely I will do a database connection. This text file data is definitely not safe and I’m not even hashing the passwords yet. The next thing is the bid price text field, which functionality is not yet fully implemented.
 
 ## Functionality
