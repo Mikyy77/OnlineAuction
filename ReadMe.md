@@ -2,6 +2,12 @@
 
 ## Bidder Estate Auction House
 
+## How to Run
+
+Make sure to have Java 17 and also JavaFX 17.
+The correct location for the javaFX jar files is under C:\javafx-sdk-17.0.2\lib
+You have to add this file as the VM argument: --module-path "C:\javafx-sdk-17.0.2\lib" --add-modules javafx.controls,javafx.fxml
+
 ## Documentation
 
 My project is about creating a real estate auction that works on principles of an English auction. It is being developed in Java in Intellij IDEA IDE with the help of JavaFX. I have implemented an easy version of login, with saving the data in a text document. The passwords are not hashed yet, but they will be in the final version.
