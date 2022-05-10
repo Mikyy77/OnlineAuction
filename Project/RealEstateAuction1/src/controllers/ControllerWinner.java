@@ -1,4 +1,4 @@
-package auction;
+package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,12 +9,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import sample.AuctionProcess;
+import sample.WinnerController;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller3 implements Initializable {
+public class ControllerWinner implements Initializable, WinnerController {
 
     @FXML
     private Label message;
@@ -27,25 +29,31 @@ public class Controller3 implements Initializable {
 
     private AuctionProcess process;
 
-    public Controller3() {
+    public ControllerWinner() {
         process = AuctionProcess.getInstance();
-        process.getProperty();
+    }
+
+    public void setMessage(String text) {
+        message.setText(text);
+    }
+
+    public void setMessage1(String text) {
+        message1.setText(text);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(process.isOwned()) {
             message.setText("Congratulations!");
-            message1.setText("You now own " + process.getProperty().getName() + ". You bought it for $" + process.getCurrentPrice());
+            message1.setText("You now own " + process.getProperty().getName() + ". You bought it for $" + process.formatPrice(process.getCurrentPrice()));
         }else {
             message.setText("Better luck next time!");
-            message1.setText("You have done well, but unfortunately, someone wanted " + process.getProperty().getName() + " even more.");
+            message1.setText("You have done well, but unfortunately, " + process.getRandomName() + " wanted " + process.getProperty().getName() + " even more.");
         }
-
     }
 
     public void start(ActionEvent event) throws IOException {
-        switchToScene(event, "login.fxml");
+        switchToScene(event, "/scenes/auction.fxml");
     }
 
 
@@ -58,7 +66,7 @@ public class Controller3 implements Initializable {
     }
 
     public void goBack(ActionEvent event) throws IOException {
-        switchToScene(event, "home.fxml");
+        switchToScene(event, "/scenes/home.fxml");
     }
 
 }

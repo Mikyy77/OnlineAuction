@@ -1,5 +1,6 @@
 package users;
 
+import java.util.Random;
 
 public class Bot extends User { //  example of inheritance
 

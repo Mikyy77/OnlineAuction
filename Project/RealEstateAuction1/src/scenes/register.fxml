@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ControllerRegister">
+   <children>
+      <Label layoutX="226.0" layoutY="46.0" text="My Profile">
+         <font>
+            <Font name="Calibri" size="38.0" />
+         </font>
+      </Label>
+      <Label layoutX="116.0" layoutY="121.0" text="Username:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="116.0" layoutY="164.0" text="Balance:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="116.0" layoutY="174.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="52.0" layoutY="223.0" text="Full Name:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="267.0" text="Email:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="310.0" text="Phone Nr:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="317.0" layoutY="223.0" text="Street:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="317.0" layoutY="267.0" text="City:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="317.0" layoutY="310.0" text="Country:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="516.0" layoutY="223.0" text="No.">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="usernameF" layoutX="208.0" layoutY="118.0" />
+      <TextField fx:id="balanceF" layoutX="208.0" layoutY="161.0" />
+      <TextField fx:id="fullNameF" layoutX="142.0" layoutY="220.0" />
+      <TextField fx:id="emailF" layoutX="142.0" layoutY="264.0" />
+      <TextField fx:id="phoneF" layoutX="141.0" layoutY="307.0" prefHeight="26.0" prefWidth="150.0" />
+      <Button fx:id="plusBalance" layoutX="371.0" layoutY="160.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="27.0" style="-fx-background-color: lightgreen;" text="+">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="minusBalance" layoutX="414.0" layoutY="160.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="27.0" style="-fx-background-color: red;" text="-">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+      </Button>
+      <TextField fx:id="streetF" layoutX="376.0" layoutY="219.0" prefHeight="26.0" prefWidth="130.0" />
+      <TextField fx:id="cityF" layoutX="376.0" layoutY="263.0" prefHeight="26.0" prefWidth="130.0" />
+      <TextField fx:id="countryF" layoutX="376.0" layoutY="307.0" prefHeight="26.0" prefWidth="130.0" />
+      <TextField fx:id="streetNoF" layoutX="538.0" layoutY="220.0" prefHeight="26.0" prefWidth="37.0" />
+      <Button layoutX="246.0" layoutY="351.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="107.0" style="-fx-background-color: lightyellow;" text="Create Profile" />
+   </children>
+</AnchorPane>

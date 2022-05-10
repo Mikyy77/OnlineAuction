@@ -1,4 +1,4 @@
-package auction;
+package sample;
 
 import properties.*;
 
@@ -12,7 +12,7 @@ public class Storage {
     private BusinessCentre centreArray[] = new BusinessCentre[5];
     private Flat flatArray[] = new Flat[5];
     private Hotel hotelArray[] = new Hotel[5];
-    private House houseArray[] = new House[5];
+    private Residence residenceArray[] = new Residence[5];
 
     public Storage() {
         createProperties();
@@ -35,7 +35,7 @@ public class Storage {
             return hotelArray[secondRandom];
         }
         if(firstRandom == 4) {
-            return houseArray[secondRandom];
+            return residenceArray[secondRandom];
         }
         return null;
     }
@@ -98,8 +98,8 @@ public class Storage {
         imageURLs[3] = "@../images/beyonce.jpg";
         imageURLs[4] = "@../images/mansion.jpg";
         for(int i = 0; i<namesArray.length; i++) {
-            House house = new House(namesArray[i], prices[i], imageURLs[i]);
-            houseArray[i] = house;
+            Residence residence = new Residence(namesArray[i], prices[i], imageURLs[i]);
+            residenceArray[i] = residence;
         }
 
         // flats
