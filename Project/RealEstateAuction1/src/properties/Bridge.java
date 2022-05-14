@@ -1,8 +1,10 @@
 package properties;
 
-public class Bridge extends Property {
+import java.io.Serializable;
 
-    public Bridge(String name, int price, String image) {
+public class Bridge extends Property implements Serializable {
+
+    public Bridge(String name, long price, String image) {
         super(name, price, image);
     }
 }

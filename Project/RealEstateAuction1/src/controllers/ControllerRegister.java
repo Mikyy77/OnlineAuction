@@ -1,42 +1,54 @@
 package controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import sample.AuctionController;
-import sample.AuctionProcess;
-import sample.RegisterController;
+import auctionControl.AuctionProcess;
+import auctionControl.LoginControl;
+import interfaces.RegisterController;
+import serialization.Serialize;
+import users.User;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ControllerRegister implements Initializable, RegisterController {
+public class ControllerRegister implements Initializable, RegisterController, Serializable {
     @FXML
     private Stage stage;
     private Scene scene;
     private Parent root;
 
     @FXML
-    private Label usernameF;
+    private TextField usernameF;
     @FXML
-    private Label balanceF;
+    private TextField balanceF;
     @FXML
-    private Label fullNameF;
+    private TextField fullNameF;
     @FXML
-    private Label emailF;
+    private TextField emailF;
     @FXML
-    private Label phoneF;
+    private TextField phoneF;
     @FXML
-    private Label streetF;
+    private TextField streetF;
     @FXML
-    private Label streetNoF;
+    private TextField streetNoF;
     @FXML
-    private Label cityF;
+    private TextField cityF;
     @FXML
-    private Label countryF;
+    private TextField countryF;
+    @FXML
+    private Label errMsg;
+
 
     public String getUsernameF() {
         return usernameF.getText();
@@ -74,15 +86,97 @@ public class ControllerRegister implements Initializable, RegisterController {
         return countryF.getText();
     }
 
+    private LoginControl loginControl;
     private AuctionProcess process;
+    private User user;
+    private boolean alreadyRegistered = false;
 
     public ControllerRegister() {
-        process = AuctionProcess.getInstance();
-        process.setLocalRegisterController(this);
+        loginControl = LoginControl.getInstance();
+        loginControl.setLocalRegisterController(this);
+
+        createUser();
+        Serialize serialize = new Serialize();
+        try {
+            ArrayList<User> users = (ArrayList<User>) serialize.getFromTxt("users");
+            for(User user : users) {
+                if(user.getName().equals(user.getName())) {
+                    alreadyRegistered = true;
+                }
+            }
+            if(!alreadyRegistered) {
+                users.add(user);
+                serialize.writeIntoTxt(users);
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
+
+    public void createUser() {
+
+        User user = new User(loginControl.getLoginForm(), 100000000);
+        user.setPassword(loginControl.getPwForm());
+        System.out.println(loginControl.getPwForm());
+        System.out.println(user.getPassword());
+
+        process = AuctionProcess.getInstance();
+        process.setUser(user);
+        this.user = user;
+
+    }
+
+    public void updateUser() {
+        if(balanceF.getText().length() > 11) {
+            errMsg.setText("Balance too high!");
+            user.setBalance(100000000);
+        } else {
+            user.setBalance(Integer.parseInt(balanceF.getText()));
+        }
+        if(!fullNameF.getText().isEmpty() && !emailF.getText().isEmpty() && !phoneF.getText().isEmpty()) {
+            user.createContact(fullNameF.getText(), emailF.getText(), phoneF.getText());
+        }
+        if(!streetF.getText().isEmpty() && !streetNoF.getText().isEmpty() && !cityF.getText().isEmpty() && countryF.getText().isEmpty()) {
+            user.createAddress(streetF.getText(), Integer.parseInt(streetNoF.getText()), cityF.getText(), countryF.getText());
+        }
+    }
+
+    public void startAuction(ActionEvent event) throws IOException {
+        updateUser();
+        switchToScene(event, "/scenes/auction.fxml");
+    }
+
+    public void increaseBalance(ActionEvent event) {
+        if(Integer.parseInt(balanceF.getText()) < 900000000) {
+            long balanceIncrease = Integer.parseInt(balanceF.getText()) + 100000000;
+            balanceF.setText(String.valueOf(balanceIncrease));
+
+        }
+    }
+
+    public void decreaseBalance(ActionEvent event) {
+        if(Integer.parseInt(balanceF.getText()) > 100000000) {
+            long balanceIncrease = Integer.parseInt(balanceF.getText()) - 100000000;
+            balanceF.setText(String.valueOf(balanceIncrease));
+        } else if(Integer.parseInt(balanceF.getText()) > 10000000) {
+            long balanceIncrease = Integer.parseInt(balanceF.getText()) - 10000000;
+            balanceF.setText(String.valueOf(balanceIncrease));
+        }
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        usernameF.setText(loginControl.getLoginForm());
+        balanceF.setText("100000000");
     }
+
+    public void switchToScene(ActionEvent event, String file) throws IOException {
+        root = FXMLLoader.load(getClass().getResource(file));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }

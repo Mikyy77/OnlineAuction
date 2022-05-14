@@ -1,4 +1,4 @@
-package sample;
+package main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    //TODO Factory method pattern
+    //TODO observer design pattern
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {

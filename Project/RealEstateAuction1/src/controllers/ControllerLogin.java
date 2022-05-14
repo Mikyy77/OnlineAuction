@@ -1,5 +1,9 @@
 package controllers;
 
+import auctionControl.AuctionProcess;
+import auctionControl.LoginControl;
+import exceptions.WrongLoginException;
+import interfaces.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,19 +12,20 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import sample.AuctionProcess;
-import sample.LoginControl;
-import sample.LoginController;
+import serialization.Serialize;
+import users.User;
 
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
-public class ControllerLogin implements Initializable, LoginController {
+public class ControllerLogin implements Initializable, LoginController, Serializable {
+    private static final long serialVersionUID = 6529685098267757690L;
+
 
     @FXML
     private Stage stage;
@@ -36,8 +41,8 @@ public class ControllerLogin implements Initializable, LoginController {
     @FXML
     private Label pwValid;
 
-
-    LoginControl loginControl;
+    private AuctionProcess process;
+    private LoginControl loginControl;
 
     public ControllerLogin() {
 
@@ -60,40 +65,56 @@ public class ControllerLogin implements Initializable, LoginController {
     public void login(ActionEvent event) throws IOException {
         loginControl = LoginControl.getInstance();
         loginControl.setLocalLoginController(this);
-        if(loginControl.checkLogin()) {
-            loginControl.writeInfo();
+        if(loginForm.getText().equals("admin")) {
+            if(loginControl.isAdmin()) {
+                process = AuctionProcess.getInstance();
+                process.createAdmin("admin", 999999999);
+                switchToScene(event, "/scenes/adminAuction.fxml");
+            } else {
+                pwValid.setText("Incorrect user password");
+            }
+            return;
+        }
+        User user = loginControl.checkLogin();
+        if(user != null) {
             AuctionProcess process = AuctionProcess.getInstance();
-            process.createUser(loginForm.getText(), 1000000000);
+            process.setUser(user);
             switchToScene(event, "/scenes/auction.fxml");
-       }
+       } else {
+            try {
+                if(pwForm.getText().length() < 6 || pwForm.getText().length() > 20)
+                    throw new WrongLoginException(pwValid.idProperty()); // TODO my custom exception
+                if(loginForm.getText().length() < 3 || loginForm.getText().length() > 20)
+                    throw new WrongLoginException(usernameValid.idProperty());
+            } catch (WrongLoginException e) {
+            }
+        }
+    }
+
+    public void register(ActionEvent event) throws IOException {
+        loginControl = LoginControl.getInstance();
+        loginControl.setLocalLoginController(this);
+        if(loginControl.checkRegister() && !loginForm.getText().equals("admin")) {
+            process = AuctionProcess.getInstance();
+            switchToScene(event, "/scenes/register.fxml");
+        }
     }
 
     // getters and setters
 
     public String getLoginForm() {
-        try {
-            return loginForm.getText();
-        }catch(Exception e){}
-        return "";
+        return loginForm.getText();
     }
 
     public String getPwForm() {
-        try {
-            return pwForm.getText();
-        }catch(Exception e){}
-        return "";
+        return pwForm.getText();
     }
 
     public void setUsernameValid(String text) {
-        //try{
-            usernameValid.setText(text);
-       // }catch(Exception e){}
-
+        usernameValid.setText(text);
     }
 
     public void setPwValid(String text) {
-        try{
-            pwValid.setText(text);
-        }catch(Exception e){}
+        pwValid.setText(text);
     }
 }

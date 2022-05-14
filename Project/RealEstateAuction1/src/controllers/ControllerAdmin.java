@@ -18,13 +18,10 @@ import interfaces.AuctionController;
 import auctionControl.AuctionProcess;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
-public class ControllerAuction implements Initializable, AuctionController, Serializable {
-    public static final long serialVersionUID = 123456789;
+public class ControllerAdmin implements Initializable, AuctionController {
     @FXML
     private Label title;
     @FXML
@@ -44,13 +41,11 @@ public class ControllerAuction implements Initializable, AuctionController, Seri
     @FXML
     private TextArea textArea;
     @FXML
+    private Button pause;
+    @FXML
     private Label nameL;
     @FXML
-    private Label balanceL;
-    @FXML
     private Label interest;
-
-
 
     @FXML
     private Stage stage;
@@ -59,7 +54,7 @@ public class ControllerAuction implements Initializable, AuctionController, Seri
 
     private AuctionProcess process;
 
-    public ControllerAuction() {
+    public ControllerAdmin() {
         process = AuctionProcess.getInstance();
         process.setLocalAuctionController(this);
     }
@@ -103,36 +98,35 @@ public class ControllerAuction implements Initializable, AuctionController, Seri
         textArea.appendText(text + "\n");
     }
 
-    public void setNameL(String name) {
-        nameL.setText(nameL.getText() + " " + name);
-    }
-
-
-    public void appendBalanceL(String balance) {
-        balanceL.setText(balanceL.getText() + " " + balance);
-    }
-    public void setBalanceL(String balance) {
-        balanceL.setText(balance);
-    }
-
-    public void setInterest(boolean isInterested) {
-        if(isInterested) {
-            interest.setText("High Interest!");
-        } else {
-            interest.setText("");
-        }
-    }
-
-
     public void bid() {
         process.bidBtnClicked();
     }
 
+    public void setNameL(String name) {
+        //nameL.setText(nameL.getText() + " " + name);
+    }
+
+    public void setBalanceL(String balance) {}
+
+    public void appendBalanceL(String balance) {}
+
+
+    @Override
+    public void setInterest(boolean isInterested) {
+        if(isInterested) {
+            interest.setText("High interest!");
+        } else {
+            interest.setText("");
+        }
+
+    }
+
+
     public void setBidButton() {
-        bidButton.setPrefWidth(150);
+        bidButton.setPrefWidth(100);
         bidButton.setLayoutX(bidButton.getLayoutX() - 30);
         bidButton.setText("See Results");
-        bidButton.setOnAction(event -> {  //TODO my own action event
+        bidButton.setOnAction(event -> {
             try {
                 switchToScene(event, "/scenes/winner.fxml");
             } catch (IOException e) {
@@ -141,10 +135,24 @@ public class ControllerAuction implements Initializable, AuctionController, Seri
         });
     }
 
-    public void addBalance() {
-        process.addBalance();
+    public void pause() {
+        process.pause();
+        pause.setText("Resume");
+        pause.setStyle("-fx-background-color: green; ");
+        pause.setOnAction(event -> resume());
     }
 
+    public void resume(){
+        pause.setText("Pause");
+        pause.setStyle("-fx-background-color: orange; ");
+        process.resume();
+        pause.setOnAction(event -> pause());
+    }
+
+
+    public void stopAuction(ActionEvent event) throws IOException {
+        switchToScene(event, "/scenes/winner.fxml");;
+    }
 
 
     public void switchToScene(ActionEvent event, String file) throws IOException {

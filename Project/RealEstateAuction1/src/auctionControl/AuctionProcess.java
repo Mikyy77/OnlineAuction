@@ -1,27 +1,34 @@
-package sample;
+package auctionControl;
 
+import interfaces.AuctionController;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import properties.Property;
+import storage.Storage;
+import users.Admin;
 import users.Bot;
 import users.User;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class AuctionProcess { // singleton class
+public class AuctionProcess implements Serializable { // singleton class
+    public static final long serialVersionUID = 123456789;
 
     private User user;
     private Property property;
     private boolean isOwned = false;
     private long currentPrice;
     private AuctionController auctionController;
-    private RegisterController registerController;
     private int counter = 5;
     private Timer timer = new Timer();
-    private String randomName;
+    private boolean paused = false;
+    private ArrayList<Bot> bots = createBots();
+    private Bot currentBot;
 
     public static AuctionProcess auctionProcess;
 
@@ -38,13 +45,10 @@ public class AuctionProcess { // singleton class
         this.auctionController = auctionController;
     }
 
-    public void setLocalRegisterController(RegisterController registerController) {
-        this.registerController = registerController;
+    public Bot getCurrentBot() {
+        return currentBot;
     }
 
-    public String getRandomName() {
-        return randomName;
-    }
 
     public void initialize() {
         Storage storage = new Storage();
@@ -63,7 +67,22 @@ public class AuctionProcess { // singleton class
         futurePrice = (futurePrice + 5000) / 10000 * 10000;
         auctionController.setBidPrice(String.valueOf(futurePrice));
 
+        auctionController.setNameL(user.getName());
+        auctionController.appendBalanceL(formatPrice(user.getBalance()));
+
         restartTimer();
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void pause() {
+        paused = true;
+    }
+
+    public void resume() {
+        paused = false;
     }
 
     public void updatePrice(long initialPrice) {
@@ -96,6 +115,7 @@ public class AuctionProcess { // singleton class
         }
     }
 
+
     public void startTimer() {
         TimerTask task = new TimerTask(){
             @Override
@@ -107,9 +127,16 @@ public class AuctionProcess { // singleton class
                         auctionController.setBid();
                         timer.cancel();
                     }
-                    if(counter > 0) {
+
+                    if(counter > 0 && !paused) {
                         counter--;
-                        botBetting();
+                        boolean pressure = false;
+                        if(counter < 3) {
+                            pressure = true;
+                        }
+                        boolean interested = calculateInterested();
+
+                        notifyAllBots(pressure, interested);
                     }
                 });
             }
@@ -117,43 +144,90 @@ public class AuctionProcess { // singleton class
         timer.schedule(task, 1000, 1000);
     }
 
+    public void addBalance() {
+        user.setBalance(user.getBalance() + 10000000);
+        auctionController.addToTextArea("Added $ 10 M to balance");
+        auctionController.setBalanceL("Balance: " + formatPrice(user.getBalance() + 10000000));
+    }
+
+
+    public boolean calculateInterested() {
+        boolean interested = false;
+        if(Math.random() > 0.8) {
+            interested = true;
+            auctionController.setInterest(true);
+        } else {
+            auctionController.setInterest(false);
+        }
+        return interested;
+    }
+
     public void endAuction() {
         if(isOwned) {
+            user.buy(currentPrice, property);
             auctionController.addToTextArea("\nCongratulations! You have just bought the " + property.getName() + "\n");
         } else {
-            auctionController.addToTextArea("\n" + randomName + " has just bought the " + property.getName() + "\n");
+            auctionController.addToTextArea("\n" + getCurrentBot().getName() + " has just bought the " + property.getName() + "\n");
         }
     }
 
-    public void botBetting() {
-        // bot betting
-        if((currentPrice - property.getPrice()) < (currentPrice * 0.3)) {
-            if(Math.random() > 0.5) {
-                autoBid((long) ((double) currentPrice * 1.1)); // 50% opportunity every second
-                botBid();
+    public void bid(Bot bot) {
+        autoBid((long) ((double) currentPrice * 1.1), bot);
+        botBid();
+    }
+
+    public void notifyAllBots(boolean pressure, boolean interested) { // TODO observer - notify all objects about a certain event
+
+        double press = 0;
+        if(pressure) {
+            press = 0.05;
+        }
+
+        double interest = 0;
+        if(interested) {
+            interest = 0.1;
+        }
+
+        for(Bot bot : bots) {
+
+            if(botBidding(press, interest)) {
+                bot.bid((long) ((double) currentPrice * 1.1));
+                bid(bot);
+                break;
             }
-        }else if((currentPrice - property.getPrice()) < (currentPrice * 0.5)) {
-            if(Math.random() > 0.7) {
-                autoBid((long) ((double) currentPrice * 1.1)); // 30% opportunity every second
-                botBid();
-            }
-        }else if((currentPrice - property.getPrice()) < (currentPrice * 0.8)) {
-            if(Math.random() > 0.8) {
-                autoBid((long) ((double) currentPrice * 1.1)); // 20% opportunity every second
-                botBid();
-            }
-        }else if((currentPrice - property.getPrice()) < (currentPrice * 1.5)) {
-            if(Math.random() > 0.9) {
-                autoBid((long) ((double) currentPrice * 1.1)); // 10% opportunity every second
-                botBid();
-            }
-        }else if((currentPrice - property.getPrice()) >= (currentPrice * 1.5)) {
-            if(Math.random() > 0.95) {
-                autoBid((long) ((double) currentPrice * 1.1)); // 5% opportunity every second
-                botBid();
-            }
+
         }
     }
+
+    public boolean botBidding(double pressure, double interest) {
+        if((currentPrice - property.getPrice()) < (property.getPrice() * 0.3)) {
+            if(Math.random() > (0.8 - pressure - interest)) {
+                return true;
+            }
+        }else if((currentPrice - property.getPrice()) < (property.getPrice() * 0.5)) {
+            if(Math.random() > (0.85 - pressure - interest)) {
+                return true;
+            }
+        }else if((currentPrice - property.getPrice()) < (property.getPrice() * 0.8)) {
+            if(Math.random() > (0.9 - pressure - interest)) {
+                return true;
+            }
+        }else if((currentPrice - property.getPrice()) < (property.getPrice() * 1.5)) {
+            if(Math.random() > (0.97 - pressure - interest)) {
+                return true;
+            }
+        }else if((currentPrice - property.getPrice()) < (property.getPrice() * 2)) {
+            if(Math.random() > (0.99 - pressure - interest)) {
+                return true;
+            }
+        }else if((currentPrice - property.getPrice()) >= (property.getPrice() * 2)) {
+            if(Math.random() > (0.99 - interest)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public void botBid() {
         increaseAndRestart();
@@ -163,7 +237,7 @@ public class AuctionProcess { // singleton class
         long biddingPrice = Long.parseLong(auctionController.getBidPrice());
 
         if(user.getBalance() < biddingPrice) {
-            auctionController.addToTextArea("You don't have enough money.\n");
+            auctionController.addToTextArea("You don't have enough money.");
             return;
         }
 
@@ -171,7 +245,7 @@ public class AuctionProcess { // singleton class
             increaseAndRestart();
             user.bid(biddingPrice);
             isOwned = true;
-            auctionController.addToTextArea("*You*" + user.getName() + " just bid " + formatPrice(currentPrice));
+            auctionController.addToTextArea("*You* " + user.getName() + " just bid " + formatPrice(currentPrice));
         } else {
             auctionController.setBidPrice(String.valueOf(biddingPrice));
         }
@@ -194,12 +268,18 @@ public class AuctionProcess { // singleton class
         startTimer();
     }
 
-    public void autoBid(long price) {
-        randomName = randomName();
-        Bot bot = new Bot(randomName);
-        bot.bid(price);
-        auctionController.addToTextArea(randomName + " just bid " + formatPrice(price));
+    public void autoBid(long price, Bot bot) {
+        currentBot = bot;
+        auctionController.addToTextArea(bot.getName() + " just bid " + formatPrice(price));
         isOwned = false;
+    }
+
+    public ArrayList<Bot> createBots() {
+        ArrayList<Bot> bots = new ArrayList<>();
+        for(int i = 0; i<15; i++) {
+            bots.add(new Bot(randomName()));
+        }
+       return bots;
     }
 
 
@@ -213,13 +293,21 @@ public class AuctionProcess { // singleton class
 
     public String randomName() {
         Random rand = new Random();
-        String names = "Rachel Joey Ross Phoebe Chandler Monica Toby Todd Brad Alex Alexa Jonas Tommy Arthur Mike Miley Alice Adele Brian Max George Jenny Tim Peter John Jose";
+        String names = "Rachel Joey Ross Phoebe Chandler Monica Brad Alexa Jonas Tommy Arthur Mike Miley Brian Max George Jose Siri Chris";
         String[] namesArray = names.split(" ");
         return namesArray[rand.nextInt(namesArray.length)];
     }
 
     public void createUser(String username, long balance) {
         user = new User(username, balance);
+    }
+
+    public void createAdmin(String username, long balance) {
+        user = new Admin(username, balance);
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setProperty(Property property) {

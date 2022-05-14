@@ -1,12 +1,14 @@
 package properties;
 
-public abstract class Property {
+import java.io.Serializable;
+
+public abstract class Property implements Serializable {
     String name;
     long price;
     String imageURL;
     boolean sold = false;
 
-    public Property(String name, int price, String imageURL) {
+    public Property(String name, long price, String imageURL) {
         this.name = name;
         this.price = price;
         this.imageURL = imageURL;

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ControllerRegister">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ControllerRegister">
    <children>
       <Label layoutX="226.0" layoutY="46.0" text="My Profile">
          <font>
@@ -63,17 +63,17 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="usernameF" layoutX="208.0" layoutY="118.0" />
+      <TextField fx:id="usernameF" editable="false" layoutX="208.0" layoutY="118.0" />
       <TextField fx:id="balanceF" layoutX="208.0" layoutY="161.0" />
       <TextField fx:id="fullNameF" layoutX="142.0" layoutY="220.0" />
       <TextField fx:id="emailF" layoutX="142.0" layoutY="264.0" />
       <TextField fx:id="phoneF" layoutX="141.0" layoutY="307.0" prefHeight="26.0" prefWidth="150.0" />
-      <Button fx:id="plusBalance" layoutX="371.0" layoutY="160.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="27.0" style="-fx-background-color: lightgreen;" text="+">
+      <Button fx:id="plusBalance" layoutX="371.0" layoutY="160.0" mnemonicParsing="false" onAction="#increaseBalance" prefHeight="26.0" prefWidth="27.0" style="-fx-background-color: lightgreen;" text="+">
          <font>
             <Font name="Calibri Bold" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="minusBalance" layoutX="414.0" layoutY="160.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="27.0" style="-fx-background-color: red;" text="-">
+      <Button fx:id="minusBalance" layoutX="414.0" layoutY="160.0" mnemonicParsing="false" onAction="#decreaseBalance" prefHeight="26.0" prefWidth="27.0" style="-fx-background-color: red;" text="-">
          <font>
             <Font name="Calibri Bold" size="13.0" />
          </font>
@@ -82,6 +82,7 @@
       <TextField fx:id="cityF" layoutX="376.0" layoutY="263.0" prefHeight="26.0" prefWidth="130.0" />
       <TextField fx:id="countryF" layoutX="376.0" layoutY="307.0" prefHeight="26.0" prefWidth="130.0" />
       <TextField fx:id="streetNoF" layoutX="538.0" layoutY="220.0" prefHeight="26.0" prefWidth="37.0" />
-      <Button layoutX="246.0" layoutY="351.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="107.0" style="-fx-background-color: lightyellow;" text="Create Profile" />
+      <Button layoutX="246.0" layoutY="351.0" mnemonicParsing="false" onAction="#startAuction" prefHeight="34.0" prefWidth="107.0" style="-fx-background-color: navy;" text="Create Profile" textFill="WHITE" />
+      <Label fx:id="errMsg" layoutX="212.0" layoutY="191.0" prefHeight="18.0" prefWidth="174.0" textFill="#9e0000" />
    </children>
 </AnchorPane>

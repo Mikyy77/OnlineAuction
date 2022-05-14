@@ -1,4 +1,4 @@
-package sample;
+package interfaces;
 
 public interface LoginController {
     String getLoginForm();

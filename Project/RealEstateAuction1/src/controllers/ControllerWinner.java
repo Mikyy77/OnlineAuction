@@ -8,9 +8,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import sample.AuctionProcess;
-import sample.WinnerController;
+import auctionControl.AuctionProcess;
+import interfaces.WinnerController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +24,9 @@ public class ControllerWinner implements Initializable, WinnerController {
     private Label message;
     @FXML
     private Label message1;
+    @FXML
+    private ImageView view;
+
     @FXML
     private Stage stage;
     private Scene scene;
@@ -45,15 +50,22 @@ public class ControllerWinner implements Initializable, WinnerController {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(process.isOwned()) {
             message.setText("Congratulations!");
-            message1.setText("You now own " + process.getProperty().getName() + ". You bought it for $" + process.formatPrice(process.getCurrentPrice()));
+            message1.setText("You now own " + process.getProperty().getName() + ". You bought it for " + process.formatPrice(process.getCurrentPrice()));
         }else {
             message.setText("Better luck next time!");
-            message1.setText("You have done well, but unfortunately, " + process.getRandomName() + " wanted " + process.getProperty().getName() + " even more.");
+            message1.setText("You have done well, but unfortunately, " + process.getCurrentBot().getName() + " wanted " + process.getProperty().getName() + " even more.");
         }
+        String imageUrl = process.getProperty().getImageURL().substring(1);
+        Image img = new Image(getClass().getResource(imageUrl).toString()); // set image url
+        view.setImage(img);
     }
 
     public void start(ActionEvent event) throws IOException {
-        switchToScene(event, "/scenes/auction.fxml");
+        if(process.getUser().getName().equals("admin")) {
+            switchToScene(event, "/scenes/adminAuction.fxml");
+        } else {
+            switchToScene(event, "/scenes/auction.fxml");
+        }
     }
 
 

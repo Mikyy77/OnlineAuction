@@ -15,4 +15,8 @@ public class Bot extends User { //  example of inheritance
     public void bid(long price) {
         System.out.println(name + " just bid $ " + price);
     }
+
+    public String getName() {
+        return this.name;
+    }
 }

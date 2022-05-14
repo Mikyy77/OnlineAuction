@@ -1,7 +1,9 @@
 package properties;
 
-public class BusinessCentre extends Property {
-    public BusinessCentre(String name, int price, String image) {
+import java.io.Serializable;
+
+public class BusinessCentre extends Property implements Serializable {
+    public BusinessCentre(String name, long price, String image) {
         super(name, price, image);
     }
 }

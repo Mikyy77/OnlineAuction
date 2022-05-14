@@ -2,8 +2,10 @@ package properties;
 
 // chained inheritance --> Flat extends Residence extends Property
 
-public class Flat extends Residence {
-    public Flat(String name, int price, String image) {
+import java.io.Serializable;
+
+public class Flat extends Residence implements Serializable {
+    public Flat(String name, long price, String image) {
         super(name, price, image);
     }
 }

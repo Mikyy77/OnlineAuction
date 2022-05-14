@@ -1,4 +1,4 @@
-package sample;
+package interfaces;
 
 import javafx.scene.image.Image;
 
@@ -11,4 +11,8 @@ public interface AuctionController {
     void setTitle(String text);
     void setImage(Image img);
     void addToTextArea(String text);
+    void setNameL(String name);
+    void setBalanceL(String balance);
+    void appendBalanceL(String balance);
+    void setInterest(boolean isInterested);
 }
