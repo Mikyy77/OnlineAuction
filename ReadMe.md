@@ -35,24 +35,67 @@ Both username and password are validated
 
 Bid button and bid price text field allow the user to bid as much as they want.
 The bots are always bidding at the same time, so you have to beat them.
-Every time a bid is placed, the timer restarts
-If the user wins, a congratulations message is displayed
+Every time a bid is placed, the timer restarts.
+If the user wins, a congratulations message is displayed.
 
 ## Features
+## Main criteria
+### Polymorphism
+- **Admin Buy**
+    - buy method is overridden, doesn't subtract money from Admin's account
+    - package users, class Admin, line 20
 
-Login scene 60%
-Auction scene 60%
-Results scene 60%
-Users and bots 70%
-Storage 90%
-Timer
+### Aggregation
+- **User Contact and Address**
+    - each user has a contact and address that are created when registering
+    - package users, class User, lines 15, 16
+### Inheritance
+- **Properties**
+    - each property has inherited methods from an abstract Class named Property
+    - package properties, class Property
+- **Users**
+    - Bot and Admin are inherited from the User class
+    - package users, classes Bot, Admin
 
-## Important code
+## Other criteria
+### Design patterns
+-	**Observer**
+    - used for notifying all bots that they can bid
+    - package auctionControl, class AuctionProcess, line 171 - method notifyAllBots()
+-	**Factory method**
+    - used for encapsulated creation of Property objects outside the Storage class
+    - package storage, class StorageFactory, is used in Storage, lines 21, 27
+-	**Singleton**
+    - used as control classes that can store data and communicate with other classes
+    - package auctionControl, class AuctionProcess, LoginControl
 
-Bot class, line 5 and line 14 – examples of inheritance and polymorphism
-AuctionProcess, line 15 - aggregation
-Property – abstract class for many types of properties
-AuctionProcess – singleton design pattern
+### My own exceptions
+- **Wrong Login Exception**
+    - package exceptions, class WrongLoginException
+    - used for wrong login input, in package auctionControl, class ControllerLogin, line 105
+
+### Multithreading
+- **Timer Task**
+    - for creating a Timer, we use the class TimerTask with an implemented run() method, which starts a new Thread
+    - package auctionControl, class AuctionProcess, line 115
+
+### RTTI
+- **Instance of List**
+    - checking whether elements of a list are instance of class User
+    - used in package serialization, class Serialize, line 12
+ 
+### Lambda expressions
+- **Timer Task**
+    - used for Timer Task creation, directly overriding and implementing the run() method
+    - package auctionControl, class AuctionProcess
+
+### Serialization
+- **Saving User Data**
+    - used for knowing which user has or has not registered
+    - keeping track of all users
+    - package serialization, class Serialize
+
+
 
 
 
