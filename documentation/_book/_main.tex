@@ -1,0 +1,495 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{report}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Bidder Estate Auction House},
+  pdfauthor={Michal Darovec},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
+\title{Bidder Estate Auction House}
+\author{Michal Darovec}
+\date{2022-05-14}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{documentation}{%
+\chapter{Documentation}\label{documentation}}
+
+\hypertarget{bidder-estate-auction-house}{%
+\section{Bidder Estate Auction House}\label{bidder-estate-auction-house}}
+
+\hypertarget{documentation-1}{%
+\section{Documentation}\label{documentation-1}}
+
+My project is about creating a real estate auction that works on principles of an English auction. It is being developed in Java in Intellij IDEA IDE with the help of JavaFX. I have implemented an easy version of login, with saving the data in a text document. The passwords are not hashed yet, but they will be in the final version.
+
+The project has a home scene which allows you to log in. If the username is too long or too short, you have to change it. If you have logged in before, you have to log in with the same password. After clicking the button, you are automatically redirected to the auction scene. Here, you get a random property generated from the Storage class. The time for bidding is always 5 seconds and you are playing against bots, so you don't bet alone. Every time a bid is placed, the timer restarts. The auction ends when the time runs up and last bid always wins. So, either you get a congratulations message or a better luck next time message.
+
+I have decided to create a singleton class called AuctionProcess where all the data is stored and transferred to other controllers.
+
+\hypertarget{info}{%
+\section{Info}\label{info}}
+
+To run the program with the user list, in the Controller class, you first have to specify the path to the file where users.txt is or you can create your own file anywhere. You just need to specify the path to get all functionalities, even though it doesn't work completely right yet.
+
+\hypertarget{functionality}{%
+\section{Functionality}\label{functionality}}
+
+\hypertarget{login-scene}{%
+\section{Login scene}\label{login-scene}}
+
+Enter username and password.
+If you are logging in again, you have to type the same password
+Both username and password are validated
+
+\hypertarget{auction-scene}{%
+\section{Auction scene}\label{auction-scene}}
+
+Bid button and bid price text field allow the user to bid as much as they want.
+The bots are always bidding at the same time, so you have to beat them.
+Every time a bid is placed, the timer restarts.
+If the user wins, a congratulations message is displayed.
+
+\hypertarget{features}{%
+\section{Features}\label{features}}
+
+\hypertarget{main-criteria}{%
+\section{Main criteria}\label{main-criteria}}
+
+\hypertarget{polymorphism}{%
+\subsection{Polymorphism}\label{polymorphism}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Admin Buy}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    buy method is overridden, doesn't subtract money from Admin's account
+  \item
+    package users, class Admin, line 20
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{aggregation}{%
+\subsection{Aggregation}\label{aggregation}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{User Contact and Address}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    each user has a contact and address that are created when registering
+  \item
+    package users, class User, lines 15, 16
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{inheritance}{%
+\subsection{Inheritance}\label{inheritance}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Properties}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    each property has inherited methods from an abstract Class named Property
+  \item
+    package properties, class Property
+  \end{itemize}
+\item
+  \textbf{Users}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Bot and Admin are inherited from the User class
+  \item
+    package users, classes Bot, Admin
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{app-logic-and-gui}{%
+\subsection{App Logic and GUI}\label{app-logic-and-gui}}
+
+\begin{itemize}
+\tightlist
+\item
+  application logic is separated from GUI by using singleton classes and other helper classes and putting the major part of logic into them
+\item
+  some controller classes do contain a bit of logic necessary to run the GUI window with no problems
+\item
+  OOP principles are used in the project to separate the logic from the GUI as much as possible
+\item
+  the methods passed from controllers to helper classes are passed by interfaces that communicate between these classes
+\end{itemize}
+
+\hypertarget{other-criteria}{%
+\section{Other criteria}\label{other-criteria}}
+
+\hypertarget{design-patterns}{%
+\subsection{Design patterns}\label{design-patterns}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Observer}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    used for notifying all bots that they can bid
+  \item
+    package auctionControl, class AuctionProcess, line 171 - method notifyAllBots()
+  \end{itemize}
+\item
+  \textbf{Factory method}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    used for encapsulated creation of Property objects outside the Storage class
+  \item
+    package storage, class StorageFactory, is used in Storage, lines 21, 27
+  \end{itemize}
+\item
+  \textbf{Singleton}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    used as control classes that can store data and communicate with other classes
+  \item
+    package auctionControl, class AuctionProcess, LoginControl
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{my-own-exceptions}{%
+\subsection{My own exceptions}\label{my-own-exceptions}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Wrong Login Exception}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    package exceptions, class WrongLoginException
+  \item
+    used for wrong login input, in package auctionControl, class ControllerLogin, line 105
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{multithreading}{%
+\subsection{Multithreading}\label{multithreading}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Timer Task}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    for creating a Timer, we use the class TimerTask with an implemented run() method, which starts a new Thread
+  \item
+    package auctionControl, class AuctionProcess, line 115
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{rtti}{%
+\subsection{RTTI}\label{rtti}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Instance of List}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    checking whether elements of a list are instance of class User
+  \item
+    used in package serialization, class Serialize, line 12
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{lambda-expressions}{%
+\subsection{Lambda expressions}\label{lambda-expressions}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Timer Task}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    used for Timer Task creation, directly overriding and implementing the run() method
+  \item
+    package auctionControl, class AuctionProcess
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{serialization}{%
+\subsection{Serialization}\label{serialization}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Saving User Data}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    used for knowing which user has or has not registered
+  \item
+    keeping track of all users
+  \item
+    package serialization, class Serialize
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{uml-diagram}{%
+\chapter{UML diagram}\label{uml-diagram}}
+
+Project contains the following diagrams:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{uml-diagram}{UML diagram}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{use-case}{Use Case}
+  \item
+    \protect\hyperlink{class-diagram}{Class diagram}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{use-case}{%
+\section{Use Case}\label{use-case}}
+
+\hypertarget{class-diagram}{%
+\section{Class diagram}\label{class-diagram}}
+
+Showcase of all classes in the project and the links between them.
+\includegraphics{diagrams/classDiagram.png}
+
+\hypertarget{field-diagram}{%
+\section{Field diagram}\label{field-diagram}}
+
+Showcase of all fields in the project and the links between them.
+\includegraphics{diagrams/fieldDiagram.png}
+
+\hypertarget{method-diagram}{%
+\section{Method diagram}\label{method-diagram}}
+
+Showcase of all methods in the project and the links between them.
+\includegraphics{diagrams/methodDiagram.png}
+
+\hypertarget{description-of-production-versions}{%
+\chapter{Description of production versions}\label{description-of-production-versions}}
+
+Project contains the following fully functional versions:
+
+Example:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{jar/v1.0.0.2.jar}{v1.0.2} - write location of the compiled program - JAR file
+\item
+  \href{jar/v1.0.0.2.jar}{v1.0.1} - write location of the compiled program - JAR file
+\item
+  \href{jar/v1.0.0.2.jar}{v1.0.0} - write location of the compiled program - JAR file
+\end{itemize}
+
+\hypertarget{change-log}{%
+\section{Change log}\label{change-log}}
+
+\begin{itemize}
+\tightlist
+\item
+  Note: adjustments and changes to the project should be noted here. You can log risks and issues here as well. Also, write here if a certain version has certain shortcomings.
+\end{itemize}
+
+\hypertarget{version-changes}{%
+\section{Version changes}\label{version-changes}}
+
+\hypertarget{version-1.0}{%
+\subsection{Version 1.0}\label{version-1.0}}
+
+\begin{itemize}
+\tightlist
+\item
+  starting gui and user class
+\end{itemize}
+
+\hypertarget{version-1.1}{%
+\subsection{Version 1.1}\label{version-1.1}}
+
+\begin{itemize}
+\tightlist
+\item
+  first functional version of the project
+\item
+  bug fixes
+\end{itemize}
+
+\hypertarget{version-1.2}{%
+\subsection{Version 1.2}\label{version-1.2}}
+
+\begin{itemize}
+\tightlist
+\item
+  fully functional version of auction
+\item
+  added functionality of users to buy
+\item
+  winner window
+\end{itemize}
+
+\hypertarget{version-1.3}{%
+\subsection{Version 1.3}\label{version-1.3}}
+
+\begin{itemize}
+\tightlist
+\item
+  added admin functionality
+\item
+  added data saving - serialization
+\item
+  added design patterns
+\item
+  added other features
+\item
+  current version of the project
+\end{itemize}
+
+\hypertarget{environment-setup}{%
+\chapter{Environment setup}\label{environment-setup}}
+
+Example:
+
+\begin{itemize}
+\tightlist
+\item
+  Eclipse IDE for Java Developers (includes Incubating components)
+\end{itemize}
+
+Version: 2022-03 (4.23.0)
+
+\begin{itemize}
+\tightlist
+\item
+  JDK 17
+\item
+  JavaFX 17
+\item
+  Scene Builder
+\end{itemize}
+
+\hypertarget{installation}{%
+\section{Installation}\label{installation}}
+
+\hypertarget{how-to-run}{%
+\section{How to Run}\label{how-to-run}}
+
+Make sure to have Java 17 and also JavaFX 17.
+The correct location for the javaFX jar files is under \texttt{C:\textbackslash{}javafx-sdk-17.0.2\textbackslash{}lib}
+You have to add this file as the VM argument: \texttt{-\/-module-path\ "C:\textbackslash{}javafx-sdk-17.0.2\textbackslash{}lib"\ -\/-add-modules\ javafx.controls,javafx.fxml}
+
+\hypertarget{simulation-and-demonstration-of-use}{%
+\chapter{Simulation and demonstration of use}\label{simulation-and-demonstration-of-use}}
+
+The first thing is to add the VM arguments to the project as shown in the technical details. All the important code is highlighted by TODOs, so for the important lines of code, just check TODOs of the project and it will be much simpler.
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

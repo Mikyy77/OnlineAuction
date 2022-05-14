@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 UML diagram | github toc</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 UML diagram | github toc" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 UML diagram | github toc" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  
+
+<meta name="author" content="Replace and write here you Name and Lastname" />
+
+
+<meta name="date" content="2022-04-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="description-of-production-versions.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#project-documentation" id="toc-project-documentation"><span class="toc-section-number">1</span> Project documentation<span></span></a>
+<ul>
+<li><a href="index.html#list-of-features-for-current-version-v1.0.2" id="toc-list-of-features-for-current-version-v1.0.2"><span class="toc-section-number">1.1</span> List of features for current version v1.0.2<span></span></a></li>
+<li><a href="index.html#important-code" id="toc-important-code"><span class="toc-section-number">1.2</span> Important code<span></span></a></li>
+<li><a href="index.html#uml-diagram" id="toc-uml-diagram"><span class="toc-section-number">1.3</span> UML diagram<span></span></a></li>
+<li><a href="index.html#project-skeleton" id="toc-project-skeleton"><span class="toc-section-number">1.4</span> Project Skeleton<span></span></a></li>
+</ul></li>
+<li><a href="uml-diagram-1.html#uml-diagram-1" id="toc-uml-diagram-1"><span class="toc-section-number">2</span> UML diagram<span></span></a>
+<ul>
+<li><a href="uml-diagram-1.html#use-case" id="toc-use-case"><span class="toc-section-number">2.1</span> Use Case<span></span></a></li>
+<li><a href="uml-diagram-1.html#class-diagram" id="toc-class-diagram"><span class="toc-section-number">2.2</span> Class diagram<span></span></a>
+<ul>
+<li><a href="uml-diagram-1.html#description-of-classes" id="toc-description-of-classes"><span class="toc-section-number">2.2.1</span> Description of classes<span></span></a></li>
+</ul></li>
+<li><a href="uml-diagram-1.html#package-diagram" id="toc-package-diagram"><span class="toc-section-number">2.3</span> Package diagram<span></span></a></li>
+<li><a href="uml-diagram-1.html#object-diagram" id="toc-object-diagram"><span class="toc-section-number">2.4</span> Object diagram<span></span></a></li>
+<li><a href="uml-diagram-1.html#component-diagram" id="toc-component-diagram"><span class="toc-section-number">2.5</span> Component diagram<span></span></a></li>
+<li><a href="uml-diagram-1.html#composite-structure-diagram" id="toc-composite-structure-diagram"><span class="toc-section-number">2.6</span> Composite structure diagram<span></span></a></li>
+<li><a href="uml-diagram-1.html#deployment-diagram" id="toc-deployment-diagram"><span class="toc-section-number">2.7</span> Deployment diagram<span></span></a></li>
+</ul></li>
+<li><a href="description-of-production-versions.html#description-of-production-versions" id="toc-description-of-production-versions"><span class="toc-section-number">3</span> Description of production versions<span></span></a>
+<ul>
+<li><a href="description-of-production-versions.html#change-log" id="toc-change-log"><span class="toc-section-number">3.1</span> Change log<span></span></a></li>
+<li><a href="description-of-production-versions.html#version-changes" id="toc-version-changes"><span class="toc-section-number">3.2</span> Version changes<span></span></a>
+<ul>
+<li><a href="description-of-production-versions.html#version-1.0.2" id="toc-version-1.0.2"><span class="toc-section-number">3.2.1</span> Version 1.0.2<span></span></a></li>
+<li><a href="description-of-production-versions.html#version-1.0.1" id="toc-version-1.0.1"><span class="toc-section-number">3.2.2</span> Version 1.0.1<span></span></a></li>
+<li><a href="description-of-production-versions.html#version-1.0.0" id="toc-version-1.0.0"><span class="toc-section-number">3.2.3</span> Version 1.0.0<span></span></a></li>
+</ul></li>
+</ul></li>
+<li><a href="environment-setup.html#environment-setup" id="toc-environment-setup"><span class="toc-section-number">4</span> Environment setup<span></span></a>
+<ul>
+<li><a href="environment-setup.html#installation" id="toc-installation"><span class="toc-section-number">4.1</span> Installation<span></span></a></li>
+<li><a href="environment-setup.html#database" id="toc-database"><span class="toc-section-number">4.2</span> Database<span></span></a></li>
+</ul></li>
+<li><a href="simulation-and-demonstration-of-use.html#simulation-and-demonstration-of-use" id="toc-simulation-and-demonstration-of-use"><span class="toc-section-number">5</span> Simulation and demonstration of use<span></span></a></li>
+<li><a href="references.html#references" id="toc-references">References<span></span></a></li>
+<li><a href="h1a.html#h1a" id="toc-h1a"><span class="toc-section-number">6</span> H1a<span></span></a>
+<ul>
+<li><a href="h1a.html#h2" id="toc-h2"><span class="toc-section-number">6.1</span> H2<span></span></a></li>
+</ul></li>
+<li><a href="h1b.html#h1b" id="toc-h1b"><span class="toc-section-number">7</span> H1b<span></span></a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">github toc</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="uml-diagram-1" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> UML diagram<a href="uml-diagram-1.html#uml-diagram-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>*** Write and add only the diagrams you are currently using in your project. The document is just a structure proposal.</p>
+<p>Project contains the following diagrams:
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+<!-- code_chunk_output --></p>
+<ul>
+<li><a href="index.html#uml-diagram">UML diagram</a>
+<ul>
+<li><a href="uml-diagram-1.html#use-case">Use Case</a></li>
+<li><a href="uml-diagram-1.html#class-diagram">Class diagram</a>
+<ul>
+<li><a href="uml-diagram-1.html#description-of-classes">Description of classes</a></li>
+</ul></li>
+<li><a href="uml-diagram-1.html#package-diagram">Package diagram</a></li>
+<li><a href="uml-diagram-1.html#object-diagram">Object diagram</a></li>
+<li><a href="uml-diagram-1.html#component-diagram">Component diagram</a></li>
+<li><a href="uml-diagram-1.html#composite-structure-diagram">Composite structure diagram</a></li>
+<li><a href="uml-diagram-1.html#deployment-diagram">Deployment diagram</a></li>
+</ul></li>
+</ul>
+<!-- /code_chunk_output -->
+<div id="use-case" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Use Case<a href="uml-diagram-1.html#use-case" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="class-diagram" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Class diagram<a href="uml-diagram-1.html#class-diagram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="description-of-classes" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Description of classes<a href="uml-diagram-1.html#description-of-classes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Example:
+GUI class
+- This is an abstract class, it is made for simplifying of making certain UI elements e.g. buttons, frames, etc.</p>
+</div>
+</div>
+<div id="package-diagram" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Package diagram<a href="uml-diagram-1.html#package-diagram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="object-diagram" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Object diagram<a href="uml-diagram-1.html#object-diagram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="component-diagram" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Component diagram<a href="uml-diagram-1.html#component-diagram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="composite-structure-diagram" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Composite structure diagram<a href="uml-diagram-1.html#composite-structure-diagram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="deployment-diagram" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Deployment diagram<a href="uml-diagram-1.html#deployment-diagram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="description-of-production-versions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/001_uml_diagrams.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
