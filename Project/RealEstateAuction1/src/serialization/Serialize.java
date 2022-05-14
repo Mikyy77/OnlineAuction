@@ -10,8 +10,8 @@ public class Serialize implements Serializable {
     public final boolean writeIntoTxt(ArrayList<?> o) throws IOException {
         if(o.get(0) instanceof User) { // TODO RTTI usage
             //TODO relative path
-            FileOutputStream file = new FileOutputStream("C:\\Users\\micha\\IdeaProjects\\RealEstateAuction\\src\\files\\users.txt");
-            //FileOutputStream file = new FileOutputStream("/files/users.txt"); // relative path
+        	String path = new File("src/files/users.txt").getAbsolutePath();
+            FileOutputStream file = new FileOutputStream(path);
             ObjectOutputStream stream = new ObjectOutputStream(file);
             stream.writeObject(o);
             file.close();
@@ -22,8 +22,8 @@ public class Serialize implements Serializable {
     }
     public Object getFromTxt(String help) throws IOException, ClassNotFoundException {
         if(help.equals("users")) {
-            FileInputStream file = new FileInputStream("C:\\Users\\micha\\IdeaProjects\\RealEstateAuction\\src\\files\\users.txt");
-            //FileInputStream file = new FileInputStream("/files/users.txt");
+        	String path = new File("src/files/users.txt").getAbsolutePath();
+            FileInputStream file = new FileInputStream(path);
             ObjectInputStream stream = new ObjectInputStream(file);
             ArrayList<User> users = (ArrayList<User>)stream.readObject();
             stream.close();

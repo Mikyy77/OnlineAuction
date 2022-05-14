@@ -7,8 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    //TODO Factory method pattern
-    //TODO observer design pattern
 
 
     @Override
