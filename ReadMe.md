@@ -18,10 +18,7 @@ I have decided to create a singleton class called AuctionProcess where all the d
 
 ## Info
 
-During the auction process, the user biddings are only shown in console so far. So to see how players and bots bid, it is neccessary to check the console - for this version.
-
-To run the program with the user list, in the Controller class, you first have to specify the path to the file where users.txt is or you can create your own file anywhere. You just need to specify the path to get all functionalities, even though it doesn’t work completely right yet.
-In this version, many functionalities aren’t perfect. Login is not done at all, most likely I will do a database connection. This text file data is definitely not safe and I’m not even hashing the passwords yet. The next thing is the bid price text field, which functionality is not yet fully implemented.
+To see everything - every main and other criteria that is fulfilled, go to TODOs and check there. Most criteria and most important code is shown there.
 
 ## Functionality
 
@@ -101,6 +98,43 @@ If the user wins, a congratulations message is displayed.
     - used for knowing which user has or has not registered
     - keeping track of all users
     - package serialization, class Serialize
+
+# Diagrams
+## Class diagram
+Showcase of all classes in the project and the links between them.
+![alt text](./diagrams/classDiagram.png?raw=true)
+
+## Field diagram
+Showcase of all fields in the project and the links between them.
+![alt text](./diagrams/fieldDiagram.png?raw=true)
+
+## Method diagram
+Showcase of all methods in the project and the links between them.
+![alt text](./diagrams/methodDiagram.png?raw=true)
+
+# Project Versions
+
+## Version 1.0
+- starting gui and user class
+
+## Version 1.1
+- first functional version of the project
+- bug fixes
+
+## Version 1.2
+- fully functional version of auction
+- added functionality of users to buy
+- winner window
+
+## Version 1.3
+- added admin functionality
+- added data saving - serialization
+- added design patterns
+- added other features
+- current version of the project
+
+
+
 
 
 
