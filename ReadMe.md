@@ -58,10 +58,10 @@ If the user wins, a congratulations message is displayed.
     - package users, classes Bot, Admin
 
 ### App Logic and GUI
-    - application logic is separated from GUI by using singleton classes and other helper classes and putting the major part of logic into them
-    - some controller classes do contain a bit of logic necessary to run the GUI window with no problems
-    - OOP principles are used in the project to separate the logic from the GUI as much as possible
-    - the methods passed from controllers to helper classes are passed by interfaces that communicate between these classes
+   - application logic is separated from GUI by using singleton classes and other helper classes and putting the major part of logic into them
+   - some controller classes do contain a bit of logic necessary to run the GUI window with no problems
+   - OOP principles are used in the project to separate the logic from the GUI as much as possible
+   - the methods passed from controllers to helper classes are passed by interfaces that communicate between these classes
 
 
 ## Other criteria
