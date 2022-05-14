@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ControllerWinner">
+   <children>
+      <Label layoutX="286.0" layoutY="64.0" />
+      <Label fx:id="message" alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="27.0" prefHeight="47.0" prefWidth="422.0" text="Label" textAlignment="CENTER">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Button fx:id="goBack" layoutX="24.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: navy;" text="Log In" textFill="WHITE" />
+      <Button fx:id="start" layoutX="186.0" layoutY="322.0" mnemonicParsing="false" onAction="#start" prefHeight="35.0" prefWidth="226.0" style="-fx-background-color: navy;" text="Start Auction" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Label fx:id="message1" alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="276.0" prefHeight="35.0" prefWidth="546.0" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="view" fitHeight="192.0" fitWidth="320.0" layoutX="140.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>
