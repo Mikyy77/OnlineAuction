@@ -1,7 +1,7 @@
 --- 
 title: "Bidder Estate Auction House"
 author: "Michal Darovec"
-date: "2022-05-14"
+date: "2022-05-15"
 site: bookdown::bookdown_site
 documentclass: report
 bibliography: [book.bib, packages.bib]
@@ -131,7 +131,6 @@ editor_options:
 
 # UML diagram {#uml-diagram}
 
-
 Project contains the following diagrams:
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 <!-- code_chunk_output -->
@@ -140,44 +139,32 @@ Project contains the following diagrams:
     -   [Use Case](#use-case)
     -   [Class diagram](#class-diagram)
 
-
 <!-- /code_chunk_output -->
 
 ## Use Case {#use-case}
 
 ## Class diagram {#class-diagram}
 
-Showcase of all classes in the project and the links between them. 
+Showcase of all classes in the project and the links between them.
+
 ![alt text](diagrams/classDiagram.png)
 
 ## Field diagram
 
-Showcase of all fields in the project and the links between them. 
+Showcase of all fields in the project and the links between them.
+
 ![alt text](diagrams/fieldDiagram.png)
 
 ## Method diagram
 
-Showcase of all methods in the project and the links between them. 
+Showcase of all methods in the project and the links between them.
+
 ![alt text](diagrams/methodDiagram.png)
-
-
-
 
 <!--chapter:end:001_uml_diagrams.Rmd-->
 
 # Description of production versions
 
-Project contains the following fully functional versions:
-
-Example:
-
--   [v1.0.2](jar/v1.0.0.2.jar) - write location of the compiled program - JAR file
--   [v1.0.1](jar/v1.0.0.2.jar) - write location of the compiled program - JAR file
--   [v1.0.0](jar/v1.0.0.2.jar) - write location of the compiled program - JAR file
-
-## Change log
-
-- Note: adjustments and changes to the project should be noted here. You can log risks and issues here as well. Also, write here if a certain version has certain shortcomings.
 
 ## Version changes
 
