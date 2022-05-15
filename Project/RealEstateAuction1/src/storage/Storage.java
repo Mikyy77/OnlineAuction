@@ -17,11 +17,18 @@ public class Storage {
         createProperties();
     }
 
+    /**
+     * Method that generates a random property in a separate class because of using the factory method design pattern.
+     * @return
+     */
     public Property generateRandomProperty() {
         StorageFactory factory = new StorageFactory();
         return factory.generateRandomProperty(bridgeArray, centreArray, flatArray, hotelArray, residenceArray);
     }
 
+    /**
+     * Creates properties of various types by using factory method design pattern
+     */
     public void createProperties(){
 
         StorageFactory factory = new StorageFactory();

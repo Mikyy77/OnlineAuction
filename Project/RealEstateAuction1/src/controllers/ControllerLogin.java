@@ -62,6 +62,12 @@ public class ControllerLogin implements Initializable, LoginController, Serializ
         stage.show();
     }
 
+    /**
+     * Login functionality with more helper code in separate class. This method logs in a user with checking whether it can or can not log in.
+     * Also, it checks whether the current user is an admin or not.
+     * @param event
+     * @throws IOException
+     */
     public void login(ActionEvent event) throws IOException {
         loginControl = LoginControl.getInstance();
         loginControl.setLocalLoginController(this);
@@ -91,6 +97,11 @@ public class ControllerLogin implements Initializable, LoginController, Serializ
         }
     }
 
+    /**
+     * Method to register a certain user with helper methods in a different class.
+     * @param event
+     * @throws IOException
+     */
     public void register(ActionEvent event) throws IOException {
         loginControl = LoginControl.getInstance();
         loginControl.setLocalLoginController(this);

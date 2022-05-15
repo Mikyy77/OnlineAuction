@@ -122,6 +122,9 @@ public class ControllerAdmin implements Initializable, AuctionController {
     }
 
 
+    /**
+     * Set bid button when the auction ends so you can see the results of the auction.
+     */
     public void setBidButton() {
         bidButton.setPrefWidth(100);
         bidButton.setLayoutX(bidButton.getLayoutX() - 30);
@@ -135,13 +138,19 @@ public class ControllerAdmin implements Initializable, AuctionController {
         });
     }
 
+    /**
+     * Pause functionality for admin use
+     */
     public void pause() {
         process.pause();
         pause.setText("Resume");
         pause.setStyle("-fx-background-color: green; ");
-        pause.setOnAction(event -> resume());
+        pause.setOnAction(event -> resume()); // TODO another example of lambda function and manually created event handler
     }
 
+    /**
+     * Resume functionality for admin use
+     */
     public void resume(){
         pause.setText("Pause");
         pause.setStyle("-fx-background-color: orange; ");
@@ -150,6 +159,11 @@ public class ControllerAdmin implements Initializable, AuctionController {
     }
 
 
+    /**
+     * Runs when you want to stop the auction as an admin instantly.
+     * @param event
+     * @throws IOException
+     */
     public void stopAuction(ActionEvent event) throws IOException {
         switchToScene(event, "/scenes/winner.fxml");;
     }

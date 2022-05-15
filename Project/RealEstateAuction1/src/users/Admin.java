@@ -15,6 +15,10 @@ public class Admin extends User implements Serializable {
     }
 
     // TODO polymorphism
+    /**
+     * This method does not decrease the balance of the user, it is because the user is admin and he has unlimited power and money.
+     * Since this class extends the User class, the method is overridden with its own implementation which can be an example of polymorphism.
+     */
     @Override
     public void buy(long price, Property property) {
         properties.add(property);

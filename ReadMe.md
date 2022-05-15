@@ -99,39 +99,6 @@ If the user wins, a congratulations message is displayed.
     - keeping track of all users
     - package serialization, class Serialize
 
-# Diagrams
-## Class diagram
-Showcase of all classes in the project and the links between them.
-![alt text](./diagrams/classDiagram.png?raw=true)
-
-## Field diagram
-Showcase of all fields in the project and the links between them.
-![alt text](./diagrams/fieldDiagram.png?raw=true)
-
-## Method diagram
-Showcase of all methods in the project and the links between them.
-![alt text](./diagrams/methodDiagram.png?raw=true)
-
-# Project Versions
-
-## Version 1.0
-- starting gui and user class
-
-## Version 1.1
-- first functional version of the project
-- bug fixes
-
-## Version 1.2
-- fully functional version of auction
-- added functionality of users to buy
-- winner window
-
-## Version 1.3
-- added admin functionality
-- added data saving - serialization
-- added design patterns
-- added other features
-- current version of the project
 
 
 

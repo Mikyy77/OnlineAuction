@@ -11,7 +11,7 @@ public class Bot extends User { //  example of inheritance
         this.name = name;
     }
 
-    @Override // example of polymorphism
+    @Override
     public void bid(long price) {
         System.out.println(name + " just bid $ " + price);
     }

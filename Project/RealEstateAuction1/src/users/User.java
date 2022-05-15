@@ -66,6 +66,11 @@ public class User implements Serializable {
         System.out.println("***You*** " + this.username + " just bid $ " + price);
     }
 
+    /**
+     * The user buy method is important because it adds to the users list of properties and decreases the balance by the price that the user paid.
+     * @param price The price of the property the user buys
+     * @param property The bought property
+     */
     public void buy(long price, Property property) {
         properties.add(property);
         balance -= price;

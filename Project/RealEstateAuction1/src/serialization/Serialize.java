@@ -7,6 +7,12 @@ import java.util.ArrayList;
 
 public class Serialize implements Serializable {
     private static final long serialVersionUID = 6529685098267757690L;
+    /**
+     * Method that writes an array list of any type into the txt file created to store information about the auction
+     * @param o The array list of any type to be written into file
+     * @return
+     * @throws IOException
+     */
     public final boolean writeIntoTxt(ArrayList<?> o) throws IOException {
         if(o.get(0) instanceof User) { // TODO RTTI usage
             //TODO relative path
@@ -20,6 +26,13 @@ public class Serialize implements Serializable {
         }
         return false;
     }
+    /**
+     * Function to get information from the txt file. Returns the array list with all objects
+     * @param help The parameter to decide which type of information you want 
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public Object getFromTxt(String help) throws IOException, ClassNotFoundException {
         if(help.equals("users")) {
         	String path = new File("src/files/users.txt").getAbsolutePath();

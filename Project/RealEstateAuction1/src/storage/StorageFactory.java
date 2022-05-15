@@ -8,6 +8,15 @@ public class StorageFactory {
 
     // TODO Factory design pattern - creates all properties
 
+	/**
+	 * Method that generates a random property of a certain type based on random numbers
+	 * @param bridgeArray
+	 * @param centreArray
+	 * @param flatArray
+	 * @param hotelArray
+	 * @param residenceArray
+	 * @return
+	 */
     public Property generateRandomProperty(Bridge bridgeArray[], BusinessCentre centreArray[], Flat flatArray[], Hotel hotelArray[], Residence residenceArray[]) {
         Random rand = new Random();
         int firstRandom = rand.nextInt(5);

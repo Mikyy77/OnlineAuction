@@ -91,6 +91,9 @@ public class ControllerRegister implements Initializable, RegisterController, Se
     private User user;
     private boolean alreadyRegistered = false;
 
+    /**
+     * This constructor checks all information and writes the registered user into the text file.
+     */
     public ControllerRegister() {
         loginControl = LoginControl.getInstance();
         loginControl.setLocalRegisterController(this);
@@ -113,6 +116,9 @@ public class ControllerRegister implements Initializable, RegisterController, Se
         }
     }
 
+    /**
+     * Creates a user from the register information
+     */
     public void createUser() {
 
         User user = new User(loginControl.getLoginForm(), 100000000);
@@ -126,6 +132,9 @@ public class ControllerRegister implements Initializable, RegisterController, Se
 
     }
 
+    /**
+     * Updates the information about the user.
+     */
     public void updateUser() {
         if(balanceF.getText().length() > 11) {
             errMsg.setText("Balance too high!");
@@ -146,6 +155,10 @@ public class ControllerRegister implements Initializable, RegisterController, Se
         switchToScene(event, "/scenes/auction.fxml");
     }
 
+    /**
+     * Increases balance of a user by pressing the button +
+     * @param event
+     */
     public void increaseBalance(ActionEvent event) {
         if(Integer.parseInt(balanceF.getText()) < 900000000) {
             long balanceIncrease = Integer.parseInt(balanceF.getText()) + 100000000;
@@ -154,6 +167,10 @@ public class ControllerRegister implements Initializable, RegisterController, Se
         }
     }
 
+    /**
+     * Decreses balance of a user by pressing the button -
+     * @param event
+     */
     public void decreaseBalance(ActionEvent event) {
         if(Integer.parseInt(balanceF.getText()) > 100000000) {
             long balanceIncrease = Integer.parseInt(balanceF.getText()) - 100000000;

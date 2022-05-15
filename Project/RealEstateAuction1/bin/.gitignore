@@ -1,2 +1,7 @@
 /main/
 /serialization/
+/auctionControl/
+/controllers/
+/exceptions/
+/storage/
+/users/

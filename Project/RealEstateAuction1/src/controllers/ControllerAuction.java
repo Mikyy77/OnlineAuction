@@ -127,7 +127,10 @@ public class ControllerAuction implements Initializable, AuctionController, Seri
     public void bid() {
         process.bidBtnClicked();
     }
-
+    
+    /**
+     * Set bid button when the auction ends so you can see the results of the auction.
+     */
     public void setBidButton() {
         bidButton.setPrefWidth(150);
         bidButton.setLayoutX(bidButton.getLayoutX() - 30);
@@ -141,6 +144,9 @@ public class ControllerAuction implements Initializable, AuctionController, Seri
         });
     }
 
+    /**
+     * Add balance to the user.
+     */
     public void addBalance() {
         process.addBalance();
     }

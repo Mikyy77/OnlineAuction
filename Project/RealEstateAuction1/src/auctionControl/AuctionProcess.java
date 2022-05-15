@@ -50,6 +50,9 @@ public class AuctionProcess implements Serializable { // singleton class
     }
 
 
+    /**
+     * Initializes the auction window with all necessary information about the auction.
+     */
     public void initialize() {
         Storage storage = new Storage();
         storage.createProperties();
@@ -73,14 +76,24 @@ public class AuctionProcess implements Serializable { // singleton class
         restartTimer();
     }
 
+    /**
+     * Gets the current user of the auction. Passing to other classes for information about the user.
+     * @return
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * Admin functionality to pause the auction process
+     */
     public void pause() {
         paused = true;
     }
 
+    /**
+     * Admin functionality to resume the auction process
+     */
     public void resume() {
         paused = false;
     }
@@ -89,6 +102,7 @@ public class AuctionProcess implements Serializable { // singleton class
         auctionController.setPrice(formatPrice(initialPrice));
     }
 
+    
     public String formatPrice(long price) {
         if(price > 1000000000) {
             long currPrice = price / 100000000;
@@ -116,11 +130,14 @@ public class AuctionProcess implements Serializable { // singleton class
     }
 
 
+    /**
+     * Starts the auction timer and notifies all bots to bid every second.
+     */
     public void startTimer() {
-        TimerTask task = new TimerTask(){
+        TimerTask task = new TimerTask(){ // TODO multithreading by using Task class
             @Override
             public void run(){
-                Platform.runLater(() -> {
+                Platform.runLater(() -> { // TODO one example of lambda function
                     auctionController.setTimer(String.valueOf(counter));
                     if(counter == 0) {
                         endAuction();
@@ -151,6 +168,10 @@ public class AuctionProcess implements Serializable { // singleton class
     }
 
 
+    /**
+     * This method randomly calculates whether the interest is high or not.
+     * @return
+     */
     public boolean calculateInterested() {
         boolean interested = false;
         if(Math.random() > 0.8) {
@@ -162,6 +183,9 @@ public class AuctionProcess implements Serializable { // singleton class
         return interested;
     }
 
+    /**
+     * Method to end the auction process, if owned by user, he buys the property.
+     */
     public void endAuction() {
         if(isOwned) {
             user.buy(currentPrice, property);
@@ -176,6 +200,11 @@ public class AuctionProcess implements Serializable { // singleton class
         botBid();
     }
 
+    /**
+     * Observer design pattern used in this class, it notifies all bots to bid in the auction. By using other methods, it determines whether the bots bid or not.
+     * @param pressure If pressure is true, the odds of bidding are higher
+     * @param interested If interested is true, the odds of bidding are higher
+     */
     public void notifyAllBots(boolean pressure, boolean interested) { // TODO observer - notify all objects about a certain event
 
         double press = 0;
@@ -198,7 +227,14 @@ public class AuctionProcess implements Serializable { // singleton class
 
         }
     }
-
+    
+    
+    /**
+     * Method to randomly decide whether a bot should or should not bid at a certain point of the auction.
+     * @param pressure If true, odds are higher
+     * @param interest If true, odds are higher
+     * @return
+     */
     public boolean botBidding(double pressure, double interest) {
         if((currentPrice - property.getPrice()) < (property.getPrice() * 0.3)) {
             if(Math.random() > (0.8 - pressure - interest)) {
@@ -233,6 +269,9 @@ public class AuctionProcess implements Serializable { // singleton class
         increaseAndRestart();
     }
 
+    /**
+     * When bid button is clicked, you have to check if you have the money, if yes, you are the highest bidder and the bidding price increases.
+     */
     public void bidBtnClicked() {
         long biddingPrice = Long.parseLong(auctionController.getBidPrice());
 
@@ -251,6 +290,9 @@ public class AuctionProcess implements Serializable { // singleton class
         }
     }
 
+    /**
+     * Every time a bid is placed, you need to update everything and restart the timer.
+     */
     public void increaseAndRestart() {
         currentPrice = Long.parseLong(auctionController.getBidPrice());
         updatePrice(currentPrice);
@@ -260,6 +302,9 @@ public class AuctionProcess implements Serializable { // singleton class
         restartTimer();
     }
 
+    /**
+     * Restarts the timer, everytime after a bid.
+     */
     public void restartTimer() {
         auctionController.setTimer(String.valueOf(5));
         counter = 5;
@@ -268,12 +313,21 @@ public class AuctionProcess implements Serializable { // singleton class
         startTimer();
     }
 
+    /**
+     * Every time a bot bids, this method is executed.
+     * @param price The price of the bid
+     * @param bot The current bot to save in the process.
+     */
     public void autoBid(long price, Bot bot) {
         currentBot = bot;
         auctionController.addToTextArea(bot.getName() + " just bid " + formatPrice(price));
         isOwned = false;
     }
 
+    /**
+     * Creates 15 bots at the beginning with random names.
+     * @return
+     */
     public ArrayList<Bot> createBots() {
         ArrayList<Bot> bots = new ArrayList<>();
         for(int i = 0; i<15; i++) {
@@ -291,6 +345,7 @@ public class AuctionProcess implements Serializable { // singleton class
         return isOwned;
     }
 
+    
     public String randomName() {
         Random rand = new Random();
         String names = "Rachel Joey Ross Phoebe Chandler Monica Brad Alexa Jonas Tommy Arthur Mike Miley Brian Max George Jose Siri Chris";

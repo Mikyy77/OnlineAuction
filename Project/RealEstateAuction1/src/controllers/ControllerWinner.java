@@ -46,6 +46,9 @@ public class ControllerWinner implements Initializable, WinnerController {
         message1.setText(text);
     }
 
+    /**
+     * Initializes all necessary information into the winner window.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(process.isOwned()) {
@@ -60,6 +63,11 @@ public class ControllerWinner implements Initializable, WinnerController {
         view.setImage(img);
     }
 
+    /**
+     * Starts the next auction.
+     * @param event
+     * @throws IOException
+     */
     public void start(ActionEvent event) throws IOException {
         if(process.getUser().getName().equals("admin")) {
             switchToScene(event, "/scenes/adminAuction.fxml");
